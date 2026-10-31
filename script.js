@@ -5,14 +5,19 @@ const taskList=document.getElementById("taskList");
 add.addEventListener("click",()=>{
     if (taskInput.value.trim() !==""){
         const li=document.createElement("li");
-        li.textContent=taskInput.value;
-        taskList.appendChild(li);
-        taskInput.value="";
+
+        const span=document.createElement("span");
+        span.textContent=taskInput.value;
+        span.addEventListener("click",()=>{
+            span.classList.toggle("done");
+        });
         const deleteBtn=document.createElement("button");
         deleteBtn.textContent="Delete";
         deleteBtn.addEventListener("click",()=>{
           li.remove();
         });
+
+        li.appendChild(span);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
         taskInput.value="";
